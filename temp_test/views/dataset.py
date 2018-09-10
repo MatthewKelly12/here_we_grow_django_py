@@ -1,35 +1,67 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from temp_test.models import Dataset
-import Adafruit_DHT
-import RPi.GPIO as GPIO
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+#import Adafruit_DHT
+#import RPi.GPIO as GPIO
 import subprocess
 import time
 import datetime
 import sqlite3
 import requests
 
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(4, GPIO.IN)
+#GPIO.setwarnings(False)
+#GPIO.setmode(GPIO.BCM)
+#GPIO.setup(4, GPIO.IN)
 
 
 def index(request):
-	return render(request, 'temp_test/index.html')
+	if request.user.is_authenticated:
+
+		return render(request, 'temp_test/home.html')
+	else:
+		return redirect('login')
+
 
 def stats(request):
 	return render(request, 'temp_test/stats.html')
 
 
+def	register(request):
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
 
-	
+
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data['username']
+			password = form.cleaned_data['password1']
+			user = authenticate(username=username, password=password)
+			login(request, user)
+			return redirect('index')
+	else:
+		form = UserCreationForm()
+
+	context = {'form': form}
+	return render(request, 'registration/register.html', context)
+
+
+def user_logout(request):
+	logout(request)
+	return redirect('login')
+
+
+
 
 
 def run(self):
 	while True:
-		indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
+		#indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 		#if indoor_humidity is not None and indoor_temperature is not None:
-		indoor_humidity = round(indoor_humidity, 2)
-		indoor_temperature = round(indoor_temperature, 2)
+		#indoor_humidity = round(indoor_humidity, 2)
+		#indoor_temperature = round(indoor_temperature, 2)
+		indoor_temperature = 77.2
+		indoor_humidity = 54
 		print(indoor_temperature*1.8 + 32)
 		print(indoor_humidity)
 
