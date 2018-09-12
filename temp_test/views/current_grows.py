@@ -4,6 +4,7 @@ from datetime import datetime
 from django.utils import timezone
 import pytz
 
+
 def current_grows(request):
 	#day = datetime.date
 	utc = pytz.UTC

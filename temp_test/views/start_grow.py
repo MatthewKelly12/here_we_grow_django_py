@@ -5,6 +5,8 @@ import subprocess
 import time
 import datetime
 import requests
+from time import sleep
+
 
 #GPIO.setwarnings(False)
 #GPIO.setmode(GPIO.BCM)
@@ -13,6 +15,11 @@ import requests
 
 def start_grow(self):
 	while True:
+		
+		img_filename = '/home/pi/projects/here_we_grow_django_py/temp_test/static/grow{counter}.jpeg'
+		subprocess.call(['raspistill', '-o', img_filename])
+
+		
 		#indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 		#if indoor_humidity is not None and indoor_temperature is not None:
 		#indoor_humidity = round(indoor_humidity, 2)
@@ -33,9 +40,9 @@ def start_grow(self):
 		print(out_temp)
 		print(out_humidity)
 
-		d = Dataset(grow='1',inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image='pic')
-		d.save()
-		print(d)
+		#d = Dataset(grow='1',inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image='pic')
+		#d.save()
+		#print(d)
 		time.sleep(5)
 	#return render('temp_test/run.html')
 
