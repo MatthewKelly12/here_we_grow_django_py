@@ -1,26 +1,25 @@
 <nav>
 	{% if nav_location != 'index' %}
-	<form action=''>
+	<form method='get' action='/'>
 		<input type='Submit' value='HOME'>
 	</form>
 	{% endif %}
 
-	{% if nav_location != 'index' %}
-	<form action=''>
+	{% if nav_location != 'current_grows' %}
+	<form method='get' action='/current_grows'>
 		<input type='Submit' value='CURRENT GROWS'>
 	</form>
 	{% endif %}
 
-	{% if nav_location != 'index' %}
-	<form action=''>
+	{% if nav_location != 'current_grows' %}
+	<form method='get' action='/current_grows'>
 		<input type='Submit' value='VIEW HISTORY'>
 	</form>
 	{% endif %}
 
-	{% if nav_location != 'index' %}
 	<form action='/logout' method='get'>
 		<input type='Submit' value='LOG OUT'>
 	</form>
-	{% endif %}
+
 </nav>
 
