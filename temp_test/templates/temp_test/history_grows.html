@@ -1,0 +1,16 @@
+{%  extends 'temp_test/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+	{% include 'temp_test/nav.html' with nav_location=view.location %}
+	<h1>{{user.username}}  {{user.id}} </h1>
+	{% for grow in grows %}
+		<div>
+			<p>   {{grow.name}}  {{grow.end_date}}
+				<a href="{% url 'history_data' pk=grow.id %}" type='button' >View Data</a>
+			</p>
+		</div>
+	{% endfor %}
+</div>
+{% endblock content %}

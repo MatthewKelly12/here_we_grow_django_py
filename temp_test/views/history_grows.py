@@ -5,16 +5,15 @@ from django.utils import timezone
 import pytz
 
 
-def current_grows(request):
+def history_grows(request):
 	utc = pytz.UTC
 	today = datetime.today()
-	print(today)
 	now = timezone.now()
-	current_grows = []
+	history_grows = []
 	grows = Grow.objects.filter(user=request.user.id)
 	for grow in grows:
-		if grow.end_date > utc.localize(today):
-			current_grows.append(grow)
+		if grow.end_date < utc.localize(today):
+			history_grows.append(grow)
 			print(grow.end_date)
-			template_name = 'temp_test/current_grows.html'
-	return render(request, template_name, {'grows': current_grows})
+			template_name = 'temp_test/history_grows.html'
+	return render(request, template_name, {'grows': history_grows})
