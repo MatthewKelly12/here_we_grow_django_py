@@ -7,7 +7,7 @@
 	<h1>{{user.username}}  {{user.id}} </h1>
 	{% for grow in grows %}
 		<div>
-			<p>{{grow.start_date}}    {{grow.name}}
+			<p>   {{grow.name}}  {{grow.end_date}}
 				<a href="{% url 'current_data' pk=grow.id %}" type='button' >View Data</a>
 			</p>
 		</div>
