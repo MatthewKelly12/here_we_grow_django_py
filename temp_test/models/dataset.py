@@ -14,4 +14,4 @@ class Dataset(models.Model):
 	date = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
-		return self.grow
+		return str(self.grow)

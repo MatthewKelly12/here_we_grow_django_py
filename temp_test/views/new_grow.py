@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from temp_test.models import Grow
 from temp_test.forms import NewGrowForm
+from .start_grow import start_grow
 
 def new_grow(request):
 
@@ -16,5 +17,7 @@ def new_grow(request):
 			grow = grow_form.save(commit=False)
 			grow.user = request.user
 			grow.save()
+			print(grow.id)
+			start_grow(request, grow.id)
 		template_name = 'temp_test/new_grow.html'
 		return render(request, template_name, {'grow_form': grow_form})
