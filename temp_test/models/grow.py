@@ -18,5 +18,6 @@ class Grow(models.Model):
 	end_date = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
 	description = models.TextField(max_length=200)
 
+
 	def __str__(self):
 		return self.name

@@ -15,10 +15,13 @@ from .stop_grow import stop_grow
 
 
 def start_grow(request,growid):
+	counter = 0
 	while True:
 		grow = Grow.objects.get(pk=growid)
 
-		#img_filename = '/home/pi/projects/here_we_grow_django_py/temp_test/static/grow{counter}.jpeg'
+		counter += 1
+		print(counter)
+		img_filename = f'/home/pi/projects/here_we_grow_django_py/temp_test/static/temp_test/images/{grow.name}{counter}.jpeg'
 		#subprocess.call(['raspistill', '-o', img_filename])
 
 
@@ -47,7 +50,7 @@ def start_grow(request,growid):
 		print(f'Outdoor Humdity: {out_humidity}')
 		#print(dataset)
 
-		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', grow_id=growid)
+		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image=img_filename, grow_id=growid)
 		d.save()
 		time.sleep(5)
 		print(f'Start Date: {grow.start_date}' )

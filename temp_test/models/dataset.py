@@ -11,6 +11,7 @@ class Dataset(models.Model):
 	water_temperature = models.CharField(max_length=50)
 	water_pH = models.CharField(max_length=50)
 	date = models.DateTimeField(default=timezone.now)
+	image = models.TextField(max_length=200)
 
 	def __str__(self):
 		return str(self.grow)
