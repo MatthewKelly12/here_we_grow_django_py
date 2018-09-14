@@ -7,5 +7,6 @@ from .current_data import current_data
 from .new_grow import new_grow
 from .history_grows import history_grows
 from .history_data import history_data
+from .stop_grow import stop_grow
 
 

@@ -11,10 +11,10 @@ def current_grows(request):
 	print(today)
 	now = timezone.now()
 	current_grows = []
-	grows = Grow.objects.filter(user=request.user.id)
+	grows = Grow.objects.filter(user=request.user.id).order_by('-id')
 	for grow in grows:
-		if grow.end_date > utc.localize(today):
+		if (grow.end_date == None) :
 			current_grows.append(grow)
-			print(grow.end_date)
 			template_name = 'temp_test/current_grows.html'
 	return render(request, template_name, {'grows': current_grows})
+	#> utc.localize(today)

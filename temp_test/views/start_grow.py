@@ -6,6 +6,7 @@ import time
 import datetime
 import requests
 from time import sleep
+from .stop_grow import stop_grow
 
 
 #GPIO.setwarnings(False)
@@ -14,11 +15,11 @@ from time import sleep
 
 
 def start_grow(request,growid):
-	grow = Grow.objects.get(pk=growid)
 	while True:
+		grow = Grow.objects.get(pk=growid)
 
-		img_filename = '/home/pi/projects/here_we_grow_django_py/temp_test/static/grow{counter}.jpeg'
-		subprocess.call(['raspistill', '-o', img_filename])
+		#img_filename = '/home/pi/projects/here_we_grow_django_py/temp_test/static/grow{counter}.jpeg'
+		#subprocess.call(['raspistill', '-o', img_filename])
 
 
 		#indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
@@ -32,7 +33,7 @@ def start_grow(request,growid):
 		print(f'Indoor Humidity: {indoor_humidity}')
 		water_temperature='75.1'
 		water_pH='77.6'
-		image='pic'
+
 
 
 
@@ -46,9 +47,15 @@ def start_grow(request,growid):
 		print(f'Outdoor Humdity: {out_humidity}')
 		#print(dataset)
 
-		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image='pic', grow_id=growid)
+		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', grow_id=growid)
 		d.save()
 		time.sleep(5)
+		print(f'Start Date: {grow.start_date}' )
+		print(f'End Date: {grow.end_date}')
+
+		if (grow.end_date is not None):
+			print('GROW STOPPED')
+			break
 	#return render('temp_test/run.html')
 
 
