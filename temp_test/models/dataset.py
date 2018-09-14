@@ -10,7 +10,6 @@ class Dataset(models.Model):
 	outside_humidity = models.CharField(max_length=50)
 	water_temperature = models.CharField(max_length=50)
 	water_pH = models.CharField(max_length=50)
-	image = models.CharField(max_length=50)
 	date = models.DateTimeField(default=timezone.now)
 
 	def __str__(self):

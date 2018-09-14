@@ -2,6 +2,7 @@ from django.shortcuts import render
 from temp_test.models import Grow
 from temp_test.forms import NewGrowForm
 from .start_grow import start_grow
+from .stop_grow import stop_grow
 
 def new_grow(request):
 
