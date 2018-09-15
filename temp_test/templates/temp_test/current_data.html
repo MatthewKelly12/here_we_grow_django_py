@@ -37,6 +37,8 @@
 
 			const canvas = document.getElementById('chart')
 			canvas.getContext('2d')
+			canvas.width = 500;
+			canvas.height = 500;
 
 
 			Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -64,7 +66,7 @@ let chart = new Chart(canvas,{
 			borderWidth: 5,
 			borderColor: "yellow",
 			hoverBorderWidth: 10,
-			hoverBorderColor: 'black',
+			hoverBorderColor: 'lightblue',
 		}
 		],
 	},
@@ -132,13 +134,13 @@ let chart = new Chart(canvas,{
 
 
 
-			// let img = document.createElement('img')
-			// let text = "{{dataset.image}}"
-			// img.src = `/static/temp_test/images/${text}.jpeg`
-			// img.width = 300;
-			// img.height = 300;
-			// document.getElementById('imgDiv').appendChild(img)
-			// imageDiv.appendChild("TEST")
+			let img = document.createElement('img')
+			let text = "{{dataset.image}}"
+			img.src = `/static/temp_test/images/${text}.jpeg`
+			img.width = 300;
+			img.height = 300;
+			document.getElementById('imgDiv').appendChild(img)
+			imageDiv.appendChild("TEST")
 		</script>
 	{% endfor %}
 </div>
