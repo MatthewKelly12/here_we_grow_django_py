@@ -32,15 +32,15 @@ def start_grow(request,growid):
 		#if indoor_humidity is not None and indoor_temperature is not None:
 		#indoor_humidity = round(indoor_humidity, 2)
 		#indoor_temperature = round(indoor_temperature*1.8 + 32, 2)
-		indoor_temperature = '77.2'
-		indoor_humidity = '54'
+		indoor_temperature = 77.2
+		indoor_humidity = 54
 		#print(f'Name: {name}')
 		print("INDOOR TEMP", indoor_temperature)
 		print("INDOOR HUMIDITY", indoor_humidity)
 
 
-		water_temperature='75.1'
-		water_pH='77.6'
+		water_temperature= 75.1
+		water_pH= 77.6
 
 
 
@@ -50,14 +50,13 @@ def start_grow(request,growid):
 		r = requests.get(url.format(city)).json()
 		out_temp = r['main']['temp']
 		out_humidity = r['main']['humidity']
-		out_temp = str(out_temp)
-		out_humidity =str(out_humidity)
+
 
 		print ("OUTDOOR TEMP", out_temp)
 		print("OUTDOOR HUMIDITY", out_humidity)
 		#print(dataset)
 
-		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image=img_name, grow_id=growid)
+		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature=75.1, water_pH=77.6, image=img_name, grow_id=growid)
 		d.save()
 		time.sleep(5)
 

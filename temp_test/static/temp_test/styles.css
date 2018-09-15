@@ -4,7 +4,7 @@ nav {
 	justify-content: flex-start;
 }
 
-canvas {
-	height: 900px;
-	width: 900px;
+body {
+	background-color: lightseagreen
 }
+
