@@ -11,6 +11,11 @@ def history_grows(request):
 	now = timezone.now()
 	history_grows = []
 	grows = Grow.objects.filter(user=request.user.id).order_by('-id')
+
+	if (grows.exists() == False):
+			template_name = 'temp_test/no_history.html'
+			return render(request, template_name)
+
 	for grow in grows:
 		if grow.end_date:
 			history_grows.append(grow)
@@ -18,5 +23,9 @@ def history_grows(request):
 			print(f'Start Date: {grow.start_date}')
 			print(f'End Date: {grow.end_date}')
 			template_name = 'temp_test/history_grows.html'
-	return render(request, template_name, {'grows': history_grows})
+			return render(request, template_name, {'grows': history_grows})
+		else:
+			template_name = 'temp_test/no_history.html'
+			return render(request, template_name)
+
 	#< utc.localize(today)

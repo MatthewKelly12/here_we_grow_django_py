@@ -6,6 +6,7 @@
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
 	<h1>{{user.username}}  {{user.id}} </h1>
 	{% for grow in grows %}
+
 		<div>
 			<p>   {{grow.name}} {{grow.start_date}}
 				<!-- <a href="{% url 'current_data' pk=grow.id %}" type='button' >View Data</a> -->
@@ -18,6 +19,7 @@
 		</form>
 
 		</div>
+
 	{% endfor %}
 </div>
 {% endblock content %}

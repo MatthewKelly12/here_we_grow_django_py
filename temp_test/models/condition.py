@@ -12,4 +12,4 @@ class Condition(models.Model):
 	variety = models.ForeignKey(Variety, on_delete=models.CASCADE)
 
 	def __str__(self):
-		return ("'self.variety'  'self.type'")
+		return (f'{self.variety} {self.type}')

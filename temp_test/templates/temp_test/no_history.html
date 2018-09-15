@@ -1,0 +1,13 @@
+{%  extends 'temp_test/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+	{% include 'temp_test/nav.html' with nav_location=view.location %}
+	<h1>{{user.username}}  {{user.id}} </h1>
+		<div>
+			<h1>Sorry, you have no past grows</h1>
+			<h2>Go Grow Somethin' MotherFucker!!</h2>
+		</div>
+</div>
+{% endblock content %}

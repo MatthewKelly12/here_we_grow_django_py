@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-</head>
-<body>
-	<h1>GROW STOPPED</h1>
-</body>
-</html>
+{%  extends 'temp_test/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+	{% include 'temp_test/nav.html' with nav_location=view.location %}
+	<h1>{{user.username}}  {{user.id}} </h1>
+
+		<div>
+			<h1>GROW STOPPED</h1>
+		</div>
+
+</div>
+{% endblock content %}
