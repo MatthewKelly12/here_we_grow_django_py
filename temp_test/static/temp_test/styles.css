@@ -3,3 +3,8 @@ nav {
 	flex-flow: row;
 	justify-content: flex-start;
 }
+
+canvas {
+	height: 900px;
+	width: 900px;
+}
