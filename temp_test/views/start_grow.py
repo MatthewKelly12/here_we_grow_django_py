@@ -30,13 +30,13 @@ def start_grow(request,growid):
 
 		indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
 		#if indoor_humidity is not None and indoor_temperature is not None:
-		#indoor_humidity = round(indoor_humidity, 2)
-		#indoor_temperature = round(indoor_temperature, 2)
+		indoor_humidity = round(indoor_humidity, 2)
+		indoor_temperature = round(indoor_temperature*1.8 + 32, 2)
 		#indoor_temperature = '77.2'
 		#indoor_humidity = '54'
 		#print(f'Name: {name}')
-		print(indoor_temperature)
-		print(indoor_humidity)
+		print("INDOOR TEMP", indoor_temperature)
+		print("INDOOR HUMIDITY", indoor_humidity)
 		
 		
 		water_temperature='75.1'
@@ -60,13 +60,12 @@ def start_grow(request,growid):
 		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature='75.1', water_pH='77.6', image=img_name, grow_id=growid)
 		d.save()
 		time.sleep(5)
-		#print(f'Start Date: {grow.start_date}' )
-		#`print(f'End Date: {grow.end_date}')
+		
 
 		if (grow.end_date is not None):
 			print('GROW STOPPED')
 			break
-	#return render('temp_test/run.html')
+	
 
 
 
