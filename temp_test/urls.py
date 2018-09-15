@@ -12,5 +12,7 @@ urlpatterns = [
 	path('new_grow/', views.new_grow, name='new_grow'),
 	path('history_grows/', views.history_grows, name='history_grows'),
 	path('history_data/<int:pk>', views.history_data, name='history_data'),
-	path('stop_grow/<int:pk>', views.stop_grow, name='stop_grow')
+	path('stop_grow/<int:pk>', views.stop_grow, name='stop_grow'),
+	path('no_current/', views.no_current, name='no_current'),
+	path('no_history/', views.no_history, name='no_history')
 ]
