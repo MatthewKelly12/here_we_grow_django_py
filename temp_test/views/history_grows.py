@@ -19,13 +19,13 @@ def history_grows(request):
 	for grow in grows:
 		if grow.end_date:
 			history_grows.append(grow)
-			print(f'Name: {grow.name}')
-			print(f'Start Date: {grow.start_date}')
-			print(f'End Date: {grow.end_date}')
-			template_name = 'temp_test/history_grows.html'
-			return render(request, template_name, {'grows': history_grows})
-		else:
-			template_name = 'temp_test/no_history.html'
-			return render(request, template_name)
+			#print(f'Name: {grow.name}')
+			#print(f'Start Date: {grow.start_date}')
+			#print(f'End Date: {grow.end_date}')
+	template_name = 'temp_test/history_grows.html'
+	return render(request, template_name, {'grows': history_grows})
+		#else:
+			#template_name = 'temp_test/no_history.html'
+			#return render(request, template_name)
 
 	#< utc.localize(today)
