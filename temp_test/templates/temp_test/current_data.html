@@ -19,18 +19,125 @@
 			<h2>Image: {{dataset.image}}</h2>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-
-		<div id="imgDiv">
-
+		<div id="imgDiv"></div>
+		<div>
+			<canvas id="chart"></canvas>
 		</div>
 		<script type="text/javascript">
-			let img = document.createElement('img')
-			let text = "{{dataset.image}}"
-			img.src = `/static/temp_test/images/${text}.jpeg`
-			img.width = 300;
-			img.height = 300;
-			document.getElementById('imgDiv').appendChild(img)
+			let greenhouseTemp = "{{dataset.inside_temperature}}"
+			let greenhouseHumidity = "{{dataset.inside_humidity}}"
+			let outTemp = "{{dataset.outside_temperature}}"
+			let outHumidity = "{{dataset.outside_humidity}}"
+			let waterPH = "{{dataset.water_pH}}"
+			let waterTemp = "{{dataset.water_temperature}}"
+
+
+
+			const canvas = document.getElementById('chart')
+			canvas.getContext('2d')
+
+
+			Chart.defaults.global.defaultFontFamily = 'Lato';
+			Chart.defaults.global.defaultFontSize = 13;
+			Chart.defaults.global.defaultFontColor = 'Green';
+
+
+let chart = new Chart(canvas,{
+	type: 'bar',
+	// height: 200,
+	// width: 200,
+	data: {
+		labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
+		datasets:[{
+			label: 'Greenhouse Stats',
+			 data:[
+				greenhouseTemp,
+				outTemp,
+				greenhouseHumidity,
+				outHumidity,
+				waterPH,
+				waterTemp
+			 ],
+			backgroundColor: ['green','blue', 'yellow', 'orange','purple','blue'],
+			borderWidth: 5,
+			borderColor: "yellow",
+			hoverBorderWidth: 10,
+			hoverBorderColor: 'black',
+		}
+		],
+	},
+	options: {
+		title: {
+			display: true,
+			text: 'MYPI Grow',
+			fontSize: 30
+		},
+		legend: {
+			// display: false,
+			position: 'top',
+			labels: {
+				fontColor: "Blue"
+			}
+		},
+		layout: {
+			padding: {
+				left: 50,
+				right: 0,
+				bottom: 0,
+				top: 0
+			}
+		},
+		tooltips: {
+			enabled: true
+		},
+		responsive: false,
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+		}
+	}
+})
+
+
+
+
+
+// var chart = new Chart(canvas, {
+// 	height:260,
+// 	data: [
+// 	{
+// 	  dataPoints: [
+// 	  { x: 10, y: 50 },
+// 	  { x: 20, y: 40},
+// 	  { x: 30, y: 30 },
+// 	  { x: 40, y: 80 },
+// 	  { x: 50, y: 20 },
+// 	  { x: 60, y: 5 },
+// 	  { x: 70, y: 60 },
+// 	  { x: 80, y: 75 },
+// 	  { x: 90, y: 35}
+// 	  ]
+// 	}
+// 	]
+//   });
+
+
+
+
+
+
+
+			// let img = document.createElement('img')
+			// let text = "{{dataset.image}}"
+			// img.src = `/static/temp_test/images/${text}.jpeg`
+			// img.width = 300;
+			// img.height = 300;
+			// document.getElementById('imgDiv').appendChild(img)
 			// imageDiv.appendChild("TEST")
 		</script>
 	{% endfor %}
