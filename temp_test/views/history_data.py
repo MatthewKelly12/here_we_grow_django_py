@@ -1,41 +1,44 @@
 from django.shortcuts import render
+from django.db.models import Avg
 from temp_test.models import Dataset
+
+
+
+
 
 
 def history_data(request,pk):
 	data = Dataset.objects.filter(grow_id=pk).order_by('-id')
-	#print(data[20].outside_temperature)
+	avg_in_temp = data.aggregate(Avg('inside_temperature'))
+	avg_in_humidity = data.aggregate(Avg('inside_humidity'))
 
-	total_inside_temp = 0
-	total_inside_humidity = 0
-	total_outside_temp = 0
-	total_outside_humidity = 0
-	total_water_temp = 0
-	total_water_ph = 0
-	length = 0
-	average = 0
-	for dataset in data:
-		total_outside_temp += dataset.outside_temperature
-		length = len(data)
-		average = (total_outside_temp)/(length)
-		print(average)
-	print(average)
+	avg_out_temp = data.aggregate(Avg('outside_temperature'))
+	avg_out_humidity = data.aggregate(Avg('outside_humidity'))
 
-	#prop_total = 0
-	#prop_length = 0
-		#prop_total += value
-		#prop_length += 1
-		#average = (prop_total)/(prop_length)
+	avg_water_temp = data.aggregate(Avg('water_temperature'))
+	avg_water_pH = data.aggregate(Avg('water_pH'))
 
+	print('LINE 21HD', avg_in_temp)
+	print(avg_in_humidity)
+	print(avg_out_temp)
+	print(avg_out_humidity)
+	print(avg_water_temp)
+	print(avg_water_pH)
 
-
-
-
-
-
+	dataset = []
+	dataset.append(avg_in_temp)
+	dataset.append(avg_in_humidity)
+	dataset.append(avg_out_temp)
+	dataset.append(avg_out_humidity)
+	dataset.append(avg_water_temp)
+	dataset.append(avg_water_pH)
+	print(dataset)
 
 
 
 
 	template_name = 'temp_test/history_data.html'
-	return render(request, template_name, {'data': data})
+	return render(request, template_name, {'dataset': dataset})
+
+
+

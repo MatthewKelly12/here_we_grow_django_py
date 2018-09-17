@@ -5,19 +5,118 @@
 <div>
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
 	<h1>{{user.username}} </h1>
-	{% for dataset in data %}
+	<h1>test1</h1>
+
+	<h1>test2</h1>
+
+	{% for stat in dataset %}
+
+		<div id="avgData">
+			<h1>Grow:Hello hello hello </h1>
+
+			<h2>Inside Temperature: {{stat.inside_temperature__avg}}</h2>
+			<h2>Inside Humidity: {{stat.inside_humidity__avg}} </h2>
+			<h2>Outside Temperature: {{stat.outside_temperature__avg}}</h2>
+			<h2>Outside Humidity: {{stat.outside_humidity__avg}}  </h2>
+			<h2>Water Temperature: {{stat.water_temperature__avg}}</h2>
+			<h2>Water pH: {{stat.water_pH__avg}}</h2>
+		</div>
+
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 
 		<div>
-			<h1>Grow: {{dataset.grow}}</h1>
-			<h2>Date: {{dataset.date}}</h2>
-			<h2>Inside Temperature: {{dataset.inside_temperature}}</h2>
-			<h2>Inside Humidity: {{dataset.inside_humidity}} </h2>
-			<h2>Outside Temperature: {{dataset.outside_temperature}}</h2>
-			<h2>Outside Temperature: {{dataset.outside_humidity}} </h2>
-			<h2>Water pH: {{dataset.water_pH}}</h2>
-			<h2>Water Temperature: {{dataset.water_temperature}}</h2>
-			<h2>Image: {{dataset.image}}</h2>
+			<canvas id="chartAvgHistory"></canvas>
 		</div>
+
+		 <script type="text/javascript">
+
+
+
+
+
+
+			const canvasAvg = document.getElementById('chartAvgHistory')
+			canvasAvg.getContext('2d')
+			canvasAvg.width = 500;
+			canvasAvg.height = 500;
+
+
+			Chart.defaults.global.defaultFontFamily = 'Lato';
+			Chart.defaults.global.defaultFontSize = 13;
+			Chart.defaults.global.defaultFontColor = 'Green';
+
+
+let chartAvg = new Chart(canvasAvg,{
+	type: 'bar',
+	// height: 200,
+	// width: 200,
+	data: {
+		labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
+		datasets:[{
+			label: 'Greenhouse Stats',
+			 data:[
+				 "{{stat}}",
+
+			 ],
+			backgroundColor: ['pink','blue', 'yellow', 'orange','purple','blue'],
+			borderWidth: 5,
+			borderColor: "yellow",
+			hoverBorderWidth: 10,
+			hoverBorderColor: 'black',
+		}
+		],
+	},
+	options: {
+		title: {
+			display: true,
+			text: 'MYPI Grow',
+			fontSize: 30
+		},
+		legend: {
+			// display: false,
+			position: 'top',
+			labels: {
+				fontColor: "Blue"
+			}
+		},
+		layout: {
+			padding: {
+				left: 50,
+				right: 0,
+				bottom: 0,
+				top: 0
+			}
+		},
+		tooltips: {
+			enabled: true
+		},
+		responsive: false,
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}]
+		}
+	}
+})
+
+
+
+
+
+
+			// let img = document.createElement('img')
+			// let text = "{{dataset.image}}"
+			// img.src = `/static/temp_test/images/${text}.jpeg`
+			// img.width = 300;
+			// img.height = 300;
+			// document.getElementById('imgDiv').appendChild(img)
+			// imageDiv.appendChild("TEST")
+		</script>
 
 	{% endfor %}
 </div>
