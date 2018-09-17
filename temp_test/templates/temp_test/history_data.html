@@ -5,22 +5,21 @@
 <div>
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
 	<h1>{{user.username}} </h1>
-	<h1>test1</h1>
 
-	<h1>test2</h1>
 
-	{% for stat in dataset %}
+
 
 		<div id="avgData">
 			<h1>Grow:Hello hello hello </h1>
 
-			<h2>Inside Temperature: {{stat.inside_temperature__avg}}</h2>
-			<h2>Inside Humidity: {{stat.inside_humidity__avg}} </h2>
-			<h2>Outside Temperature: {{stat.outside_temperature__avg}}</h2>
-			<h2>Outside Humidity: {{stat.outside_humidity__avg}}  </h2>
-			<h2>Water Temperature: {{stat.water_temperature__avg}}</h2>
-			<h2>Water pH: {{stat.water_pH__avg}}</h2>
+			<h2>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</h2>
+			<h2>Inside Humdity: {{avg_in_humidity.inside_humidity__avg}}</h2>
+			<h2>Outside Temperature: {{avg_out_temp.outside_temperature__avg}}</h2>
+			<h2>Outside Humdity: {{avg_out_humidity.outside_humidity__avg}}</h2>
+			<h2>Water Temperature: {{avg_water_temp.water_temperature__avg}}</h2>
+			<h2>Water pH: {{avg_water_pH.water_pH__avg}}</h2>
 		</div>
+
 
 
 
@@ -38,7 +37,7 @@
 
 
 
-			const canvasAvg = document.getElementById('chartAvgHistory')
+			let canvasAvg = document.getElementById('chartAvgHistory')
 			canvasAvg.getContext('2d')
 			canvasAvg.width = 500;
 			canvasAvg.height = 500;
@@ -56,10 +55,14 @@ let chartAvg = new Chart(canvasAvg,{
 	data: {
 		labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
 		datasets:[{
-			label: 'Greenhouse Stats',
+			label: 'Average Stats',
 			 data:[
-				 "{{stat}}",
-
+				 "{{avg_in_temp.inside_temperature__avg}}",
+				 "{{avg_out_temp.outside_temperature__avg}}",
+				 "{{avg_in_humidity.inside_humidity__avg}}",
+				 "{{avg_out_humidity.outside_humidity__avg}}",
+				 "{{avg_water_pH.water_pH__avg}}",
+				 "{{avg_water_temp.water_temperature__avg}}"
 			 ],
 			backgroundColor: ['pink','blue', 'yellow', 'orange','purple','blue'],
 			borderWidth: 5,
@@ -118,6 +121,6 @@ let chartAvg = new Chart(canvasAvg,{
 			// imageDiv.appendChild("TEST")
 		</script>
 
-	{% endfor %}
+
 </div>
 {% endblock content %}
