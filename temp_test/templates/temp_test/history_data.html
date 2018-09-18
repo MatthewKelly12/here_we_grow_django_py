@@ -21,19 +21,37 @@
 		</div>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<H1>{{inT}}</H1>
+
 		<div>
 			<canvas id='chartAllData'></canvas>
 		</div>
 
 		<script>
+			// REMOVE QUOTES FROM PYTHON ARRAY TO USE IN JAVASCRIPT
+			function removeQutoes(arr) {
+				let array = arr
+				array = arr.substring(1, arr.length -1)
+				let tempArray =  arr.split(', ')
+				return tempArray
+			}
 
-			let testTemp = "{{in_temp_data}}"
-			testTemp = testTemp.substring(1, testTemp.length - 1)
-			let tempArray = testTemp.split(', ')
-			console.log(tempArray)
+			// CHART FOR ALL DATASET POINTS
+			let inAllT = removeQutoes("{{in_temp_data}}")
+			let inAllH = removeQutoes("{{in_hum_data}}")
+			let outAllT = removeQutoes("{{out_temp_data}}")
+			let outAllH = removeQutoes("{{out_hum_data}}")
+			let waterAllT = removeQutoes("{{water_temp_data}}")
+			let waterAllPh = removeQutoes("{{water_ph_data}}")
 
-			let test2 = [50,85,47,78,99,32,87]
+
+
+
+
+
+			// inAllT = inAllT.substring(1, inAllT.length - 1)
+			// let tempArray = inAllT.split(', ')
+			// console.log(tempArray)
+			test2 = [23, 45, 65, 34, 97, 55]
 
 			let canvasTotal = document.getElementById('chartAllData')
 			canvasTotal.getContext('2d')
@@ -44,17 +62,19 @@
 				type: 'line',
 
 				data: {
-					labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
-					datasets:[{
-						label: 'Average Stats',
-				 		data:test2,
-						backgroundColor: ['pink','blue', 'yellow', 'orange','purple','blue'],
-						borderWidth: 5,
-						borderColor: "red",
-						hoverBorderWidth: 10,
-						hoverBorderColor: 'black',
-					},{label: 'Test', data:tempArray,borderColor:'blue'}]
-				},
+					labels:	["Inside Temperature", 'Outdoor Temperature', 'Indoor Humidity', 'Outdoor Humidity','Water Temperature','Water pH'],
+					datasets:[
+					{label: 'Inside Temperature',data:inAllT,borderWidth: 3,borderColor: "green",hoverBorderWidth: 10},
+					{label: 'Outdoor Temperature', data:outAllT,borderColor:'red', borderWidth: 3, hoverBorderWidth: 10},
+					{label: 'Indoor Humidity', data:inAllH,borderColor:'yellow', borderWidth: 3, hoverBorderWidth: 10},
+					{label: 'Outdoor Humidity', data:outAllH,borderColor:'orange', borderWidth: 3, hoverBorderWidth: 10},
+					{label: 'Water Temperature', data:waterAllT,borderColor:'blue', borderWidth: 3, hoverBorderWidth: 10},
+					{label: 'Water pH', data:waterAllPh,borderColor:'purple', borderWidth: 3, hoverBorderWidth: 10}
+
+
+
+					]},
+
 
 				options: {
 					title: {
@@ -101,7 +121,7 @@
 
 
 		 <script type="text/javascript">
-
+			// CHART FOR ALL AVERAGE DATASET POINTS
 			let canvasAvg = document.getElementById('chartAvgHistory')
 			canvasAvg.getContext('2d')
 			canvasAvg.width = 500;

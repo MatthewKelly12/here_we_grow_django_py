@@ -31,6 +31,7 @@ def history_data(request,pk):
 		water_temp_data.append(d.water_temperature)
 		water_ph_data.append(d.water_pH)
 
+	print(water_ph_data)
 	template_name = 'temp_test/history_data.html'
 	return render(request, template_name, {'data': data, 'water_ph_data': water_ph_data, 'water_temp_data': water_temp_data, 'out_hum_data':out_hum_data,'out_temp_data': out_temp_data,'in_hum_data': in_hum_data, 'in_temp_data': in_temp_data, 'avg_in_temp': avg_in_temp, 'avg_in_humidity': avg_in_humidity,'avg_out_temp': avg_out_temp, 'avg_out_humidity': avg_out_humidity, 'avg_water_temp': avg_water_temp, 'avg_water_pH': avg_water_pH})
 
