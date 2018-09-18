@@ -7,11 +7,8 @@
 	<h1>{{user.username}} </h1>
 
 
-
-
 		<div id="avgData">
 			<h1>Grow:Hello hello hello </h1>
-
 			<h2>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</h2>
 			<h2>Inside Humdity: {{avg_in_humidity.inside_humidity__avg}}</h2>
 			<h2>Outside Temperature: {{avg_out_temp.outside_temperature__avg}}</h2>
@@ -19,23 +16,91 @@
 			<h2>Water Temperature: {{avg_water_temp.water_temperature__avg}}</h2>
 			<h2>Water pH: {{avg_water_pH.water_pH__avg}}</h2>
 		</div>
-
-
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-
-
 		<div>
-			<canvas id="chartAvgHistory"></canvas>
+				<canvas id="chartAvgHistory"></canvas>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<H1>{{inT}}</H1>
+		<div>
+			<canvas id='chartAllData'></canvas>
 		</div>
 
+		<script>
+
+			let testTemp = "{{in_temp_data}}"
+			testTemp = testTemp.substring(1, testTemp.length - 1)
+			let tempArray = testTemp.split(', ')
+			console.log(tempArray)
+
+			let test2 = [50,85,47,78,99,32,87]
+
+			let canvasTotal = document.getElementById('chartAllData')
+			canvasTotal.getContext('2d')
+			canvasTotal.width = 500;
+			canvasTotal.height = 500;
+
+			let chartTotal = new Chart(canvasTotal,{
+				type: 'line',
+
+				data: {
+					labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
+					datasets:[{
+						label: 'Average Stats',
+				 		data:test2,
+						backgroundColor: ['pink','blue', 'yellow', 'orange','purple','blue'],
+						borderWidth: 5,
+						borderColor: "red",
+						hoverBorderWidth: 10,
+						hoverBorderColor: 'black',
+					},{label: 'Test', data:tempArray,borderColor:'blue'}]
+				},
+
+				options: {
+					title: {
+						display: true,
+						text: 'MYPI Grow',
+						fontSize: 30
+					},
+				legend: {
+						// display: false,
+						position: 'top',
+					labels: {
+						fontColor: "Blue"
+					}
+				},
+				layout: {
+					padding: {
+					left: 50,
+					right: 0,
+					bottom: 0,
+					top: 0
+					}
+				},
+				tooltips: {
+					enabled: true
+				},
+				responsive: false,
+				scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+			}]
+		}
+	}
+})
+		</script>
+
+
+
+
+
+
+
+
+
 		 <script type="text/javascript">
-
-
-
-
-
 
 			let canvasAvg = document.getElementById('chartAvgHistory')
 			canvasAvg.getContext('2d')
