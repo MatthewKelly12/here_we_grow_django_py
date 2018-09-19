@@ -8,8 +8,7 @@
 	{% for dataset in data %}
 
 		<div>
-			<h1>Grow: {{dataset.grow}}</h1>
-			<h2>Date: {{dataset.date}}</h2>
+			<h1>Grow: {{dataset.grow}}</h2>
 			<h2>Inside Temperature: {{dataset.inside_temperature}}</h2>
 			<h2>Inside Humidity: {{dataset.inside_humidity}} </h2>
 			<h2>Outside Temperature: {{dataset.outside_temperature}}</h2>
@@ -35,6 +34,7 @@
 
 
 
+
 			const canvas = document.getElementById('chart')
 			canvas.getContext('2d')
 			canvas.width = 500;
@@ -53,7 +53,7 @@ let chart = new Chart(canvas,{
 	data: {
 		labels:	["Inside Temperature", "Outside Temperature", "Inside Humidity", "Outside Humidity", "Water PH", "Water Temperature"],
 		datasets:[{
-			label: 'Greenhouse Stats',
+			label: 'Current Stats',
 			 data:[
 				greenhouseTemp,
 				outTemp,

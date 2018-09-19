@@ -4,12 +4,12 @@ from .grow import Grow
 
 class Dataset(models.Model):
 	grow = models.ForeignKey(Grow, on_delete=models.CASCADE)
-	inside_temperature = models.CharField(max_length=50)
-	inside_humidity = models.CharField(max_length=50)
-	outside_temperature = models.CharField(max_length=50)
-	outside_humidity = models.CharField(max_length=50)
-	water_temperature = models.CharField(max_length=50)
-	water_pH = models.CharField(max_length=50)
+	inside_temperature = models.IntegerField()
+	inside_humidity = models.IntegerField()
+	outside_temperature = models.IntegerField()
+	outside_humidity = models.IntegerField()
+	water_temperature = models.IntegerField()
+	water_pH = models.IntegerField()
 	date = models.DateTimeField(default=timezone.now)
 	image = models.TextField(max_length=200)
 
