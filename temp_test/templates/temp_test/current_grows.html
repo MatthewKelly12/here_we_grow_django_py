@@ -4,11 +4,17 @@
 {% block content %}
 <div>
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
-	<h1>{{user.username}}  {{user.id}} </h1>
-	{% for grow in grows %}
 
-		<div>
-			<p>   {{grow.name}} {{grow.start_date}}
+	<div class='centered'>
+		<img  class='navButt' src="/static/temp_test/images/mypigrow_logo.png" 	 height="200px" >
+	</div>
+	{% for grow in grows %}
+		<div class='centered'>
+			<p>  <h3> {{grow.name}}</h3>
+				<p>{{grow.start_date}}</p>
+				<p>{{grow.variety}}</p>
+				<p>{{grow.category}}</p>
+				<p>{{grow.type}}</p>
 				<!-- <a href="{% url 'current_data' pk=grow.id %}" type='button' >View Data</a> -->
 				<form method='get' action="{% url 'current_data' pk=grow.id %}">
 					<input type='submit' value='View Data'>
