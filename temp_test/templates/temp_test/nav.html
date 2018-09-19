@@ -1,25 +1,27 @@
 <nav>
+	<p id='navName' >{{user.username}}</p>
 	{% if nav_location != 'index' %}
 	<form method='get' action='/'>
-		<input type='Submit' value='HOME'>
+		<input class='navButt' type='Submit' value='START NEW GROW'>
 	</form>
 	{% endif %}
 
 	{% if nav_location != 'current_grows' %}
 	<form method='get' action='/current_grows'>
-		<input type='Submit' value='CURRENT GROWS'>
+		<input class='navButt' type='Submit' value='CURRENT GROWS'>
 	</form>
 	{% endif %}
 
 	{% if nav_location != 'history_grows' %}
 	<form method='get' action='/history_grows'>
-		<input type='Submit' value='VIEW HISTORY'>
+		<input class='navButt'type='Submit' value='VIEW HISTORY'>
 	</form>
 	{% endif %}
 
 	<form action='/logout' method='get'>
-		<input type='Submit' value='LOG OUT'>
+		<input class='navButt' type='Submit' value='LOG OUT'>
 	</form>
+
 
 </nav>
 

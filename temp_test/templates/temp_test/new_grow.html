@@ -2,9 +2,9 @@
 {% load staticfiles %}
 
 {% block content %}
-<div>
-	{% include 'temp_test/nav.html' with nav_location=view.location %}
-	<h1>{{user.username}}  {{user.id}} </h1>
+{% include 'temp_test/nav.html' with nav_location=view.location %}
+<div class='centered'>
+		<img  class='navButt' src="/static/temp_test/images/mypigrow_logo.png" 	 height="200px" >
 	<h1>New Grow</h1>
 	<form method="post">
 		{% csrf_token %}

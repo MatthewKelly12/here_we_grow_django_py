@@ -1,0 +1,64 @@
+nav {
+	display: flex;
+	flex-flow: row;
+	/* justify-content: space-between; */
+	justify-content: space-around;
+	/* justify-content: flex-start; */
+	/* background-color: #32CD32; */
+
+    /* height: 200px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+	margin-bottom: 500px; */
+	/* padding-bottom: 50px */
+	align-content: center;
+	padding: 10px;
+}
+
+
+
+
+body {
+	background-color: black;
+	color: white;
+
+}
+
+.navButt {
+background-color: black;
+color: white;
+}
+
+#navName {
+	transform: translate(10%, 3%);
+}
+
+.centered {
+	display: inline-block;
+    width: 100%;
+    height: 100%;
+    /* padding: 25px; */
+    text-align: center;
+}
+
+#imgNav {
+	transform: translate(580%,3%)
+}
+
+
+
+/* #logIn {
+	display: inline-block;
+    width: 100%;
+    height: 100%; */
+    /* padding: 25px; */
+    /* text-align: center;
+} */
+/* #registrationPage {
+	display: inline-block;
+    width: 100%;
+    height: 100%; */
+    /* padding: 25px; */
+    /* text-align: center; */
+/* } */

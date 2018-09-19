@@ -1,10 +1,13 @@
 {%  extends 'temp_test/index.html' %}
+{% load staticfiles %}
 
 {% block content %}
-<div>
+<div  class='centered'>
 	{% if form.errors%}
 	<p>There's an error</p>
 	{%  endif %}
+
+	<img src=" /static/temp_test/images/mypigrow_logo.png" >
 
 	<form method="post" action="{%  url 'login' %}">
 		{%  csrf_token %}
@@ -16,7 +19,7 @@
 		<input type="hidden" name="next" value="{{ next }}">
 
 	</form>
-	<form method='get' action='/register'>
+	<form  method='get' action='/register'>
 		<input type="submit" = value="register">
 	</form>
 </div>

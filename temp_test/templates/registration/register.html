@@ -1,7 +1,7 @@
 {%  extends 'temp_test/index.html' %}
 
 {% block content %}
-<div>
+<div class='centered'>
 	<h1>Register</h1>
 	<form method="post" action="{% url 'register' %}">
 		{% csrf_token %}
