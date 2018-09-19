@@ -16,6 +16,7 @@ from .stop_grow import stop_grow
 
 def start_grow(request,growid):
 	counter = 0
+	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&APPID=447afc2326760172ae872c6a9c4f3169'
 	while True:
 		grow = Grow.objects.get(pk=growid)
 
@@ -45,7 +46,7 @@ def start_grow(request,growid):
 
 
 
-		url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&APPID=447afc2326760172ae872c6a9c4f3169'
+
 		city = 'Nashville'
 		r = requests.get(url.format(city)).json()
 		out_temp = r['main']['temp']

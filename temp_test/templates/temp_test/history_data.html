@@ -8,7 +8,7 @@
 
 
 		<div id="avgData">
-			<h1>Grow:Hello hello hello </h1>
+			<h1>Grow: {{name}} </h1>
 			<h2>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</h2>
 			<h2>Inside Humdity: {{avg_in_humidity.inside_humidity__avg}}</h2>
 			<h2>Outside Temperature: {{avg_out_temp.outside_temperature__avg}}</h2>
@@ -35,34 +35,33 @@
 				return tempArray
 			}
 
-			// CHART FOR ALL DATASET POINTS
+
 			let inAllT = removeQutoes("{{in_temp_data}}")
 			let inAllH = removeQutoes("{{in_hum_data}}")
 			let outAllT = removeQutoes("{{out_temp_data}}")
 			let outAllH = removeQutoes("{{out_hum_data}}")
 			let waterAllT = removeQutoes("{{water_temp_data}}")
 			let waterAllPh = removeQutoes("{{water_ph_data}}")
+			let dateAll = removeQutoes("{{img_date_data}}")
+			let count = removeQutoes("{{count}}")
+			let countAll = []
+			// console.log("{{count}}")
+			count.forEach(c => {
+				console.log(c)
+			});
+			console.log(outAllH)
 
-
-
-
-
-
-			// inAllT = inAllT.substring(1, inAllT.length - 1)
-			// let tempArray = inAllT.split(', ')
-			// console.log(tempArray)
-			test2 = [23, 45, 65, 34, 97, 55]
 
 			let canvasTotal = document.getElementById('chartAllData')
 			canvasTotal.getContext('2d')
-			canvasTotal.width = 500;
-			canvasTotal.height = 500;
-
+			canvasTotal.width = 800;
+			canvasTotal.height = 800;
+			// CHART FOR ALL DATASET POINTS
 			let chartTotal = new Chart(canvasTotal,{
 				type: 'line',
 
 				data: {
-					labels:	["Inside Temperature", 'Outdoor Temperature', 'Indoor Humidity', 'Outdoor Humidity','Water Temperature','Water pH'],
+					labels:	count,
 					datasets:[
 					{label: 'Inside Temperature',data:inAllT,borderWidth: 3,borderColor: "green",hoverBorderWidth: 10},
 					{label: 'Outdoor Temperature', data:outAllT,borderColor:'red', borderWidth: 3, hoverBorderWidth: 10},

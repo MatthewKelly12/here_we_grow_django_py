@@ -23,17 +23,26 @@ def history_data(request,pk):
 	out_hum_data = []
 	water_temp_data = []
 	water_ph_data = []
+	img_date_data = []
+	counter = 0
+	count = []
+	name = 0
 	for d in data:
 		in_temp_data.append(d.inside_temperature)
 		in_hum_data.append(d.inside_humidity)
+		print(d.outside_humidity)
+		name = d.grow
+
 		out_temp_data.append(d.outside_temperature)
 		out_hum_data.append(d.outside_humidity)
 		water_temp_data.append(d.water_temperature)
 		water_ph_data.append(d.water_pH)
-
-	print(water_ph_data)
+		img_date_data.append(d.date)
+		counter += 1
+		count.append(counter)
+	print(name)
 	template_name = 'temp_test/history_data.html'
-	return render(request, template_name, {'data': data, 'water_ph_data': water_ph_data, 'water_temp_data': water_temp_data, 'out_hum_data':out_hum_data,'out_temp_data': out_temp_data,'in_hum_data': in_hum_data, 'in_temp_data': in_temp_data, 'avg_in_temp': avg_in_temp, 'avg_in_humidity': avg_in_humidity,'avg_out_temp': avg_out_temp, 'avg_out_humidity': avg_out_humidity, 'avg_water_temp': avg_water_temp, 'avg_water_pH': avg_water_pH})
+	return render(request, template_name, {'data': data, 'name': name, 'count': count, 'water_ph_data': water_ph_data, 'water_temp_data': water_temp_data, 'out_hum_data':out_hum_data,'out_temp_data': out_temp_data,'in_hum_data': in_hum_data, 'in_temp_data': in_temp_data, 'avg_in_temp': avg_in_temp, 'avg_in_humidity': avg_in_humidity,'avg_out_temp': avg_out_temp, 'avg_out_humidity': avg_out_humidity, 'avg_water_temp': avg_water_temp, 'avg_water_pH': avg_water_pH, 'img_date_data': img_date_data})
 
 
 
