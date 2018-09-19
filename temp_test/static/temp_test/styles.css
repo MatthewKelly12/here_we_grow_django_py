@@ -16,6 +16,19 @@ nav {
 	padding: 10px;
 }
 
+.info {
+	display: flex;
+	justify-content: space-between;
+	/* align-content: center; */
+	align-content: flex-end;
+}
+
+.btn {
+	/* background-color: orange; */
+	width: 115px;
+
+}
+
 
 
 
@@ -44,6 +57,12 @@ color: white;
 
 #imgNav {
 	transform: translate(580%,3%)
+}
+
+#imgDiv {
+	order: -1;
+	padding-top: 24px;
+	padding-right: 16px;
 }
 
 

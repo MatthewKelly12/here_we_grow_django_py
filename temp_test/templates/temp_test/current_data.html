@@ -4,24 +4,39 @@
 {% block content %}
 <div>
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
-
+	<div class='centered'>
+			<img  class='navButt' src="/static/temp_test/images/mypigrow_logo.png" 	 height="200px" >
+	</div>
+	<div class='info'>
 	{% for dataset in data %}
-
 		<div>
-			<h1>Grow: {{dataset.grow}}</h2>
-			<h2>Inside Temperature: {{dataset.inside_temperature}}</h2>
-			<h2>Inside Humidity: {{dataset.inside_humidity}} </h2>
-			<h2>Outside Temperature: {{dataset.outside_temperature}}</h2>
-			<h2>Outside Humidity: {{dataset.outside_humidity}} </h2>
-			<h2>Water pH: {{dataset.water_pH}}</h2>
-			<h2>Water Temperature: {{dataset.water_temperature}}</h2>
-			<h2>Image: {{dataset.image}}</h2>
+		<div>
+			<h2>{{dataset.grow}}</h2>
+		</div>
+		<div>
+		<div>
+			<div><h2>Greenhouse Current Data</h2></div>
+			<p>Inside Temperature: {{dataset.inside_temperature}}</p>
+			<p>Inside Humidity: {{dataset.inside_humidity}} </p>
+			<p>Water pH: {{dataset.water_pH}}</p>
+			<p>Water Temperature: {{dataset.water_temperature}}</p>
+		</div>
+		<div>
+			<div><h2>Outside Current Weather</h2></div>
+			<p>Outside Temperature: {{dataset.outside_temperature}}</p>
+			<p>Outside Humidity: {{dataset.outside_humidity}} </p>
+		</div>
+	</div>
+
 		</div>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-		<div id="imgDiv"></div>
+		<div id="imgDiv">
+
+		</div>
 		<div>
+
 			<canvas id="chart"></canvas>
 		</div>
 		<script type="text/javascript">
@@ -137,11 +152,12 @@ let chart = new Chart(canvas,{
 			let img = document.createElement('img')
 			let text = "{{dataset.image}}"
 			img.src = `/static/temp_test/images/${text}.jpeg`
-			img.width = 300;
-			img.height = 300;
+			img.width = 390;
+			img.height = 390;
 			document.getElementById('imgDiv').appendChild(img)
 			imageDiv.appendChild("TEST")
 		</script>
 	{% endfor %}
+	</div>
 </div>
 {% endblock content %}
