@@ -4,9 +4,12 @@
 {% block content %}
 <div>
 	{% include 'temp_test/nav.html' with nav_location=view.location %}
-	<h1>{{user.username}} </h1>
+	<div class='centered'>
+			<img  class='navButt' src="/static/temp_test/images/mypigrow_logo.png" 	 height="200px" >
+	</div>
 
 
+	<div class='info'>
 		<div id="avgData">
 			<h1>Grow: {{name}} </h1>
 			<h2>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</h2>
@@ -54,8 +57,8 @@
 
 			let canvasTotal = document.getElementById('chartAllData')
 			canvasTotal.getContext('2d')
-			canvasTotal.width = 800;
-			canvasTotal.height = 800;
+			canvasTotal.width = 500;
+			canvasTotal.height = 500;
 			// CHART FOR ALL DATASET POINTS
 			let chartTotal = new Chart(canvasTotal,{
 				type: 'line',
@@ -205,6 +208,6 @@ let chartAvg = new Chart(canvasAvg,{
 			// imageDiv.appendChild("TEST")
 		</script>
 
-
+	</div>
 </div>
 {% endblock content %}
