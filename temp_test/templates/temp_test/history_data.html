@@ -11,13 +11,25 @@
 
 	<div class='info'>
 		<div id="avgData">
-			<h1>Grow: {{name}} </h1>
-			<h2>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</h2>
-			<h2>Inside Humdity: {{avg_in_humidity.inside_humidity__avg}}</h2>
-			<h2>Outside Temperature: {{avg_out_temp.outside_temperature__avg}}</h2>
-			<h2>Outside Humdity: {{avg_out_humidity.outside_humidity__avg}}</h2>
-			<h2>Water Temperature: {{avg_water_temp.water_temperature__avg}}</h2>
-			<h2>Water pH: {{avg_water_pH.water_pH__avg}}</h2>
+				<div>
+						<h2>{{name}}</h2>
+						<p>Start: {{start}}</p>
+						<p>End: {{end}}</p>
+				</div>
+		<div>
+		<div>
+			<div><h2>Greenhouse Average Data</h2></div>
+			<p>Inside Temperature: {{avg_in_temp.inside_temperature__avg}}</p>
+			<p>Inside Humdity: {{avg_in_humidity.inside_humidity__avg}}</p>
+			<p>Water Temperature: {{avg_water_temp.water_temperature__avg}}</p>
+			<p>Water pH: {{avg_water_pH.water_pH__avg}}</p>
+		</div>
+		<div>
+			<div><h2>Outside Average Weather</h2></div>
+			<p>Outside Temperature: {{avg_out_temp.outside_temperature__avg}}</p>
+			<p>Outside Humdity: {{avg_out_humidity.outside_humidity__avg}}</p>
+		</div>
+		</div>
 		</div>
 		<div>
 				<canvas id="chartAvgHistory"></canvas>
@@ -48,17 +60,13 @@
 			let dateAll = removeQutoes("{{img_date_data}}")
 			let count = removeQutoes("{{count}}")
 			let countAll = []
-			// console.log("{{count}}")
-			count.forEach(c => {
-				console.log(c)
-			});
-			console.log(outAllH)
+
 
 
 			let canvasTotal = document.getElementById('chartAllData')
 			canvasTotal.getContext('2d')
-			canvasTotal.width = 500;
-			canvasTotal.height = 500;
+			canvasTotal.width = 470;
+			canvasTotal.height = 470;
 			// CHART FOR ALL DATASET POINTS
 			let chartTotal = new Chart(canvasTotal,{
 				type: 'line',
@@ -81,7 +89,7 @@
 				options: {
 					title: {
 						display: true,
-						text: 'MYPI Grow',
+						text: 'MIPI Grow',
 						fontSize: 30
 					},
 				legend: {
@@ -126,8 +134,8 @@
 			// CHART FOR ALL AVERAGE DATASET POINTS
 			let canvasAvg = document.getElementById('chartAvgHistory')
 			canvasAvg.getContext('2d')
-			canvasAvg.width = 500;
-			canvasAvg.height = 500;
+			canvasAvg.width = 470;
+			canvasAvg.height = 470;
 
 
 			Chart.defaults.global.defaultFontFamily = 'Lato';
@@ -162,7 +170,7 @@ let chartAvg = new Chart(canvasAvg,{
 	options: {
 		title: {
 			display: true,
-			text: 'MYPI Grow',
+			text: 'MIPI Grow',
 			fontSize: 30
 		},
 		legend: {
@@ -208,6 +216,7 @@ let chartAvg = new Chart(canvasAvg,{
 			// imageDiv.appendChild("TEST")
 		</script>
 
-	</div>
 </div>
 {% endblock content %}
+
+
