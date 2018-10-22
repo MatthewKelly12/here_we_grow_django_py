@@ -8,5 +8,10 @@ MIPI Grow is a Django web application that uses a tiny Raspberry Pi computer and
 		Python
 		Django
 		JavaScript
+		Raspberry Pi
 		Sqlite3
 		ChartsJS
+		AdaFruit AM2302 Temperature and 			Humdity Sensor
+		Raspberry Pi Camera
+		OpenWeatherMap API
+		[](https://openweathermap.org/api)
