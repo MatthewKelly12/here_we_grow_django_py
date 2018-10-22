@@ -41,7 +41,7 @@ def start_grow(request,growid):
 
 
 		water_temperature= 75.1
-		water_pH= 77.6
+		water_pH= 7.6
 
 
 

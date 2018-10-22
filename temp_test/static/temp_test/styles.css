@@ -14,6 +14,7 @@ nav {
 	/* padding-bottom: 50px */
 	align-content: center;
 	padding: 10px;
+	font-family: 'Oswald', sans-serif;
 }
 
 .info {
@@ -21,6 +22,7 @@ nav {
 	justify-content: space-between;
 	/* align-content: center; */
 	align-content: flex-end;
+	/* font-family: 'Oswald', sans-serif; */
 }
 
 .btn {
