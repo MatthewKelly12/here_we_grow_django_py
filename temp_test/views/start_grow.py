@@ -1,4 +1,5 @@
 from temp_test.models import Dataset, Grow
+# COMMENTED OUT DEPENDENCIES FOR TESTING WITHOUT RASPBERRY PI
 #import Adafruit_DHT
 #import RPi.GPIO as GPIO
 import subprocess
@@ -8,7 +9,7 @@ import requests
 from time import sleep
 from .stop_grow import stop_grow
 
-
+# COMMENTED OUT FOR TESTING WITHOUT RASPBERRY PI
 #GPIO.setwarnings(False)
 #GPIO.setmode(GPIO.BCM)
 #GPIO.setup(4, GPIO.IN)
@@ -25,7 +26,7 @@ def start_grow(request,growid):
 		img_name = (str(grow.name) + str(counter))
 		img_filename = ("temp_test/static/temp_test/images/"+img_name+".jpeg")
 		#print(img_name)
-		#print(img_filename)
+		print(img_filename)
 		#subprocess.call(['raspistill', '-o', img_filename])
 
 
