@@ -1,0 +1,15 @@
+{%  extends 'MIPI_Grow/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'MIPI_Grow/nav.html' with nav_location=view.location %}
+<div class='centered'>
+		<img  class='navButt' src="/static/MIPI_Grow/images/mypigrow_logo.png" 	 height="200px" >
+	<h1>New Grow</h1>
+	<form method="post">
+		{% csrf_token %}
+		{{grow_form.as_p}}
+		<input type='submit' value='Start Grow'>
+	</form>
+</div>
+{% endblock content %}

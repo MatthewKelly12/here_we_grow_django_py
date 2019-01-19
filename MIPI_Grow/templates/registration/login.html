@@ -1,0 +1,26 @@
+{%  extends 'MIPI_Grow/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div  class='centered'>
+	{% if form.errors%}
+	<p>There's an error</p>
+	{%  endif %}
+
+	<img src=" /static/MIPI_Grow/images/mypigrow_logo.png" >
+
+	<form method="post" action="{%  url 'login' %}">
+		{%  csrf_token %}
+
+		<p>Username: {{ form.username }}</p>
+		<p>Password: {{ form.password }}</p>
+
+		<input type="submit" = value="login">
+		<input type="hidden" name="next" value="{{ next }}">
+
+	</form>
+	<form  method='get' action='/register'>
+		<input type="submit" = value="register">
+	</form>
+</div>
+{% endblock %}

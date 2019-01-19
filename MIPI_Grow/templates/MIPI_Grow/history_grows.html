@@ -1,0 +1,30 @@
+{%  extends 'MIPI_Grow/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'MIPI_Grow/nav.html' with nav_location=view.location %}
+<div class='centered'>
+		<img  class='navButt' src="/static/MIPI_Grow/images/mypigrow_logo.png" 	 height="200px" >
+</div>
+<div>
+
+
+	{% for grow in grows %}
+		<div class='centered'>
+			<p> <h3> Name: {{grow.name}}</h3>
+				<p>Start: {{grow.start_date}}</p>
+				<p>End: {{grow.end_date}}</p>
+				<p>Variety: {{grow.variety}}</p>
+				<p>Category:	 {{grow.category}}</p>
+				<p>Type: {{grow.type}}</p>
+				<!-- <a href="{% url 'history_data' pk=grow.id %}" type='button' >View Data</a> -->
+				<!-- <button href="{% url 'history_data' pk=grow.id %}">View Data</button> -->
+				<form method='get' action="{% url 'history_data' pk=grow.id %}">
+						<input type='submit' value='View Data'>
+				</form>
+			</p>
+		</div>
+
+	{% endfor %}
+</div>
+{% endblock content %}

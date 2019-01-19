@@ -1,0 +1,13 @@
+{%  extends 'MIPI_Grow/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div>
+	{% include 'MIPI_Grow/nav.html' with nav_location=view.location %}
+	<h1>{{user.username}}  {{user.id}} </h1>
+		<div>
+			<h1>Sorry, you have no current grows</h1>
+			<h2>Go Grow Somethin'!</h2>
+		</div>
+</div>
+{% endblock content %}
