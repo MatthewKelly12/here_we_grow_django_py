@@ -1,0 +1,20 @@
+{%  extends 'MIPI_Grow/index.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class='centered'>
+	<img src=" /static/MIPI_Grow/images/mypigrow_logo.png" >
+	<form method='get' action='/new_grow'>
+		<button class='btn'type='submit' value='Start New Grow'>Start New Grow</button>
+	</form>
+	<form method='get' action='/current_grows'>
+		<input type='submit' value='Go To Current Grows'>
+	</form>
+	<form method='get' action='/history_grows'>
+		<input type='submit' value='View History'>
+	</form>
+	<form action='/logout' method='get'>
+		<input type='Submit' value='LOG OUT'>
+	</form>
+</div>
+{% endblock content %}
