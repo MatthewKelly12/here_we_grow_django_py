@@ -58,7 +58,17 @@ def start_grow(request,growid):
 		print("OUTDOOR HUMIDITY", out_humidity)
 		#print(dataset)
 
-		d = Dataset(inside_temperature=indoor_temperature, inside_humidity=indoor_humidity, outside_temperature=out_temp, outside_humidity=out_humidity, water_temperature=water_temperature, water_pH=water_pH, image=img_name, grow_id=growid)
+		d = Dataset(
+			inside_temperature=indoor_temperature,
+			inside_humidity=indoor_humidity,
+			outside_temperature=out_temp,
+			outside_humidity=out_humidity,
+			water_temperature=water_temperature,
+			water_pH=water_pH,
+			image=img_name,
+			grow_id=growid
+		)
+
 		d.save()
 		time.sleep(5)
 
