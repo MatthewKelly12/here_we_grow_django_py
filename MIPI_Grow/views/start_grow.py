@@ -1,5 +1,5 @@
 from MIPI_Grow.models import Dataset, Grow
-from MIPI_Grow.pi_functions.pi_functions import get_am2302, get_water_temp, get_water_ph
+from MIPI_Grow.pi_functions.pi_functions import get_am2302, get_water_temp, get_water_ph, get_pic
 
 # COMMENTED OUT DEPENDENCIES FOR TESTING WITHOUT RASPBERRY PI
 #import Adafruit_DHT
@@ -20,13 +20,12 @@ def start_grow(request,growid):
 	while True:
 		grow = Grow.objects.get(pk=growid)
 
+		# Name images with grow name and counter
 		counter += 1
-		print(counter)
 		img_name = (str(grow.name) + str(counter))
-		img_filename = ("MIPI_Grow/static/MIPI_Grow/images/"+img_name+".jpeg")
-		#print(img_name)
-		print(img_filename)
-		#subprocess.call(['raspistill', '-o', img_filename])
+
+		# Get picture from camera
+		img_filename = get_pic(img_name)
 
 		# Get data from temp/humdity sensor
 		indoor_humidity, indoor_temperature = get_am2302()
@@ -40,18 +39,21 @@ def start_grow(request,growid):
 
 
 
-		print("water ph and temp", water_temperature, water_pH)
 
 		city = 'Nashville'
 		r = requests.get(url.format(city)).json()
 		out_temp = r['main']['temp']
 		out_humidity = r['main']['humidity']
 
-
+		print(counter)
+		print("water ph and temp", water_temperature, water_pH)
 		print("INDOOR TEMP", indoor_temperature)
 		print("INDOOR HUMIDITY", indoor_humidity)
 		print ("OUTDOOR TEMP", out_temp)
 		print("OUTDOOR HUMIDITY", out_humidity)
+
+		#print(img_name)
+		#print(img_filename)
 		#print(dataset)
 
 		d = Dataset(

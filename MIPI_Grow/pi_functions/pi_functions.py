@@ -5,6 +5,12 @@
 
 # Functions that require the Raspberry PI
 
+def get_pic(img_name):
+	# COMMENTED OUT FOR TESTING WITHOUT RASPBERRY PI
+	img_filename = ("MIPI_Grow/static/MIPI_Grow/images/"+img_name+".jpeg")
+	#subprocess.call(['raspistill', '-o', img_filename])
+	return img_filename
+
 def get_am2302():
 	# COMMENTED OUT FOR TESTING WITHOUT RASPBERRY PI
 	#indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
@@ -24,3 +30,4 @@ def get_water_temp():
 def get_water_ph():
 
 	return 6.7
+
