@@ -1,5 +1,5 @@
 from MIPI_Grow.models import Dataset, Grow
-from MIPI_Grow.pi_functions.pi_functions import get_am2302
+from MIPI_Grow.pi_functions.pi_functions import get_am2302, get_water_temp, get_water_ph
 
 # COMMENTED OUT DEPENDENCIES FOR TESTING WITHOUT RASPBERRY PI
 #import Adafruit_DHT
@@ -31,18 +31,16 @@ def start_grow(request,growid):
 		# Get data from temp/humdity sensor
 		indoor_humidity, indoor_temperature = get_am2302()
 
+		#Get data from water temp sensor
+		water_temperature = get_water_temp()
 
-
-		print("INDOOR TEMP", indoor_temperature)
-		print("INDOOR HUMIDITY", indoor_humidity)
-
-
-		water_temperature= 75.1
-		water_pH= 7.6
+		#Get data from water temp sensor
+		water_pH = get_water_ph()
 
 
 
 
+		print("water ph and temp", water_temperature, water_pH)
 
 		city = 'Nashville'
 		r = requests.get(url.format(city)).json()
@@ -50,6 +48,8 @@ def start_grow(request,growid):
 		out_humidity = r['main']['humidity']
 
 
+		print("INDOOR TEMP", indoor_temperature)
+		print("INDOOR HUMIDITY", indoor_humidity)
 		print ("OUTDOOR TEMP", out_temp)
 		print("OUTDOOR HUMIDITY", out_humidity)
 		#print(dataset)

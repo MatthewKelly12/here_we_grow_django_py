@@ -16,3 +16,11 @@ def get_am2302():
 	indoor_humidity = 32
 	indoor_temperature = 88
 	return (indoor_humidity,indoor_temperature)
+
+def get_water_temp():
+
+	return 75.1
+
+def get_water_ph():
+
+	return 6.7
