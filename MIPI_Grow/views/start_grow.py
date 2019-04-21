@@ -1,4 +1,6 @@
 from MIPI_Grow.models import Dataset, Grow
+from MIPI_Grow.pi_functions.pi_functions import get_am2302
+
 # COMMENTED OUT DEPENDENCIES FOR TESTING WITHOUT RASPBERRY PI
 #import Adafruit_DHT
 #import RPi.GPIO as GPIO
@@ -9,10 +11,7 @@ import requests
 from time import sleep
 from .stop_grow import stop_grow
 
-# COMMENTED OUT FOR TESTING WITHOUT RASPBERRY PI
-#GPIO.setwarnings(False)
-#GPIO.setmode(GPIO.BCM)
-#GPIO.setup(4, GPIO.IN)
+
 
 
 def start_grow(request,growid):
@@ -29,14 +28,11 @@ def start_grow(request,growid):
 		print(img_filename)
 		#subprocess.call(['raspistill', '-o', img_filename])
 
+		# Get data from temp/humdity sensor
+		indoor_humidity, indoor_temperature = get_am2302()
 
-		#indoor_humidity, indoor_temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 4)
-		#if indoor_humidity is not None and indoor_temperature is not None:
-		#indoor_humidity = round(indoor_humidity, 2)
-		#indoor_temperature = round(indoor_temperature*1.8 + 32, 2)
-		indoor_temperature = 77.2
-		indoor_humidity = 54
-		#print(f'Name: {name}')
+
+
 		print("INDOOR TEMP", indoor_temperature)
 		print("INDOOR HUMIDITY", indoor_humidity)
 
